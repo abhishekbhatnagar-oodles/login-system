@@ -2,6 +2,15 @@
 
 include 'config.php';
 
+function dbquery($pswrd,$name,$mail,$conn){
+
+    $sql = "INSERT INTO users (username,email, password)
+            VALUES('$name','$mail','$pswrd')";
+
+            $result = mysqli_query($conn,$sql);
+            return $result;
+
+}
 
 
 
@@ -14,18 +23,15 @@ if(isset($_POST['submit'])){
 
 
 if (($pswrd === $cpswrd) && !empty($pswrd) && !empty($cpswrd)){
-
-    $sql = "INSERT INTO users (username,email, password)
-            VALUES('$name','$mail','$pswrd')";
-
-            $result = mysqli_query($conn, $sql);
-// print_r($result);
-        if($result){
-             echo"<script>alert('User Registered successfully!')</script>";
-        }
-        else{
-            echo"<script>alert('User not Registered successfully!')</script>";
-        }
+    
+   $result = dbquery($pswrd,$name,$mail,$conn);
+    
+    if($result){
+        echo"<script>alert('User Registered successfully!')</script>";
+   }
+   else{
+       echo"<script>alert('User not Registered successfully!')</script>";
+   }
 
 }else{
     // echo "hello world";
