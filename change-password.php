@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 
 
 $user_name = $_SESSION["name"];
@@ -15,14 +15,21 @@ if(count($_POST)>0) {
         $result = mysqli_query($conn,$sql);
         $row=mysqli_fetch_array($result);
         
+        
         if($_SESSION['password'] == $row["password"] && $_POST["newpswrd"] == $_POST["cnewpswrd"] ){
-            
-            $sql = "UPDATE users SET password = md5($_POST[newpswrd]) WHERE username = '$user_name' ";
-            $result = mysqli_query($conn,$sql);
-            // print_r($result);die;
-           
+            // print_r($_SESSION);die;
 
-            $message = "Password Changed Sucessfully";
+            $newpassword = $_POST['newpswrd'];
+            
+            
+            $sql = "UPDATE users SET password = md5($newpassword) WHERE username = '$user_name' ";
+            $result = mysqli_query($conn,$sql);
+            
+            // print_r($result);die;
+            // print_r($result);die;
+
+            $message = "Password changed successfully.";
+            
            
         } else{
              $message = "Password is not correct";

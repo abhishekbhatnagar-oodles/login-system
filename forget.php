@@ -1,16 +1,3 @@
-<?php
-
-
-
-include ('config.php');
-
-include ('forget-api.php');
-
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,37 +6,33 @@ include ('forget-api.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link href="style.css" rel="stylesheet" type="text/css"/>    
-    <title>Forget Password Form</title>
+    <title>Send Reset Password Link by passing token value</title>
 </head>
 <body>
 
 <div class="container">
 
-<div>   <?php if(isset($message)) { echo $message; } ?>   </div>
 
-    <form action="" id="change-password" method="POST" class="login-email">
-    <p class="login-text" style="font-size: 2rem; font: weight 800;">Forget Password</p>
+    <form action="password-reset-token.php"  method="POST" >
+    <p class="login-text" style="font-size: 2rem; font: weight 800;">Reset Password</p>
+    <br><br>
 
-    <div class="input-group">
-    <input class="input" type="text" placeholder="Enter your registered Username"  name="name" >
+    <div style="text-align:center" class="input-group">
+
+
+    <label for="exampleInputEmail1">Enter your email address</label><br>
+    <br><br>
+    <input class="input" type="email" placeholder="Please enter your email " id="email" name="email" required>
     </div>
+    <br><br><br><br><br><br><br>
+    
 
     <div class="input-group">
-    <input class="input" type="email" placeholder="Enter your regestered Email"  name="mail" >
-    </div>
-
-    <div class="input-group">
-    <input class="input" type="password" placeholder="Please enter New Password" name="newpswrd" >
-    </div>
-
-    <div class="input-group">
-    <input class="input" type="password" placeholder="Please confirm New Password" name="cnewpswrd" >
-    </div>
-
-    <div class="input-group">
-    <button class="btn" name="submit" >Reset Password</button>
+    <button class="btn" name="submit" >Update Password</button>
     </div>
     
+
+    <button><a style = "text-decoration:none"; href = "index.php">Go Back</a></button><br>
     </form>
     </div>
 

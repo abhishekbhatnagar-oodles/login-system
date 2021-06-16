@@ -8,12 +8,12 @@ function dbquery($pswrd,$name,$mail,$conn){
             VALUES('$name','$mail','$pswrd')";
 
             $result = mysqli_query($conn,$sql);
+            
             return $result;
 
 }
 // if ($_POST){
 //     print_r($_POST);
-    
 // }
 
 
@@ -27,7 +27,10 @@ if(isset($_POST['submit'])){
 
 if (($pswrd === $cpswrd) && !empty($pswrd) && !empty($cpswrd)){
     
-   $result = dbquery($pswrd,$name,$mail,$conn);
+   $result = dbquery($pswrd,$name,$mail,$conn) or die( mysqli_error($conn));
+//    print_r($result);die;
+
+//    print_r($result);die;
     
     if($result){
         echo"<script>alert('User Registered successfully!')</script>";
